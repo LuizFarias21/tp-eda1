@@ -117,3 +117,52 @@ void removerProduto(Produto *head, int codigo) {
 
 /* Menu */
 
+void menuProdutos(Produto *head) {
+    int op, codigo;
+
+    do {
+        printf("\n--- MENU PRODUTOS ---\n");
+        printf("1 - Cadastrar\n");
+        printf("2 - Listar\n");
+        printf("3 - Buscar\n");
+        printf("4 - Editar\n");
+        printf("5 - Remover\n");
+        printf("0 - Voltar\n");
+        printf("Opcao: ");
+        scanf("%d", &op);
+
+        switch(op) {
+
+            case 1:
+                cadastrarProduto(head);
+                break;
+
+            case 2:
+                listarProdutos(head);
+                break;
+
+            case 3:
+                printf("Codigo: ");
+                scanf("%d", &codigo);
+                Produto *p = buscarProduto(head, codigo);
+                if(p)
+                    printf("\n%s - R$ %.2f - Qtd: %d\n", p->nome, p->preco, p->quantidade);
+                else
+                    printf("Produto nao encontrado!\n");
+                break;
+
+            case 4:
+                editarProduto(head);
+                break;
+
+            case 5:
+                printf("Codigo: ");
+                scanf("%d", &codigo);
+                removerProduto(head, codigo);
+                break;
+        }
+
+    } while(op != 0);
+}
+
+
