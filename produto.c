@@ -93,3 +93,27 @@ void editarProduto(Produto *head) {
     printf("Produto atualizado!\n");
 }
 
+/* remover produto */
+
+void removerProduto(Produto *head, int codigo) {
+    Produto *ant = head;
+    Produto *atual = head->prox;
+
+    while(atual != NULL && atual->codigo != codigo) {
+        ant = atual;
+        atual = atual->prox;
+    }
+
+    if(atual == NULL) {
+        printf("Produto nao encontrado!\n");
+        return;
+    }
+
+    ant->prox = atual->prox;
+    free(atual);
+
+    printf("Produto removido!\n");
+}
+
+/* Menu */
+
