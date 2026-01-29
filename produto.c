@@ -52,5 +52,44 @@ void listarProdutos(Produto *head) {
     }
 }
 
+/* buscar produto */
 
+Produto* buscarProduto(Produto *head, int codigo) {
+    Produto *aux = head->prox;
+
+    while(aux != NULL) {
+        if(aux->codigo == codigo)
+            return aux;
+        aux = aux->prox;
+    }
+
+    return NULL;
+}
+
+
+/* editar produto */
+
+void editarProduto(Produto *head) {
+    int codigo;
+    printf("Codigo do produto: ");
+    scanf("%d", &codigo);
+
+    Produto *p = buscarProduto(head, codigo);
+
+    if(p == NULL) {
+        printf("Produto nao encontrado!\n");
+        return;
+    }
+
+    printf("Novo nome: ");
+    scanf(" %[^\n]", p->nome);
+
+    printf("Novo preco: ");
+    scanf("%f", &p->preco);
+
+    printf("Nova quantidade: ");
+    scanf("%d", &p->quantidade);
+
+    printf("Produto atualizado!\n");
+}
 
