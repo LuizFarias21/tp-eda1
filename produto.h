@@ -10,20 +10,24 @@ typedef struct Produto {
     struct Produto *prox;
 } Produto;
 
+/* Lista */
+
+Produto* criarLista();
+
 /* CRUD */
 
-Produto* cadastrarProduto(Produto *lista);
+void cadastrarProduto(Produto *head);
 
-void listarProdutos(Produto *lista);
+void listarProdutos(Produto *head);
 
-Produto* buscarProduto(Produto *lista, int codigo);
+Produto* buscarProduto(Produto *head, int codigo);
 
-void editarProduto(Produto *lista);
+void editarProduto(Produto *head);
 
-Produto* removerProduto(Produto *lista, int codigo);
+void removerProduto(Produto *head, int codigo);
 
 /* Menu */
 
-Produto* menuProdutos(Produto *lista);
+void menuProdutos(Produto *head);
 
 #endif
