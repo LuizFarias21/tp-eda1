@@ -22,7 +22,7 @@ void cadastrarProduto(Produto *head) {
     printf("Nome: ");
     scanf(" %[^\n]", novo->nome);
 
-    printf("Preco: ");
+    printf("Preco(00.00): ");
     scanf("%f", &novo->preco);
 
     printf("Quantidade: ");
