@@ -6,6 +6,7 @@ typedef struct Produto {
     int codigo;
     char nome[100];
     float preco;
+    int quantidade;
     struct Produto *prox;
 } Produto;
 
