@@ -32,4 +32,25 @@ void cadastrarProduto(Produto *head) {
     head->prox = novo;
 }
 
+/* listar produtos */
+
+void listarProdutos(Produto *head) {
+    Produto *aux = head->prox;
+
+    if(aux == NULL) {
+        printf("Nenhum produto cadastrado!\n");
+        return;
+    }
+
+    while(aux != NULL) {
+        printf("\nCodigo: %d", aux->codigo);
+        printf("\nNome: %s", aux->nome);
+        printf("\nPreco: %.2f", aux->preco);
+        printf("\nQuantidade: %d", aux->quantidade);
+        printf("\n-------------------");
+        aux = aux->prox;
+    }
+}
+
+
 
