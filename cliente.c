@@ -112,6 +112,41 @@ void remover_cliente(Cliente *lista) {
     }
 }
 
+void editar_cliente(Cliente *lista) {
+
+    int cpf;
+    printf(">>> Editar cliente <<<\n");
+
+    printf("CPF: ");
+    scanf("%d", &cpf);
+    getchar();
+
+    Cliente *p = lista->prox;
+
+    while (p != NULL && p->cpf != cpf) {
+        p = p->prox;
+    }
+
+    if (p == NULL) {
+        printf("Nenhum cliente encontrado!\n");
+        return;
+    }
+
+    printf("Nome: ");
+    scanf("%[^\n]", p->nome);
+    getchar();
+    printf("Email: ");
+    scanf("%[^\n]", p->email);
+    getchar();
+    printf("Telefone: ");
+    scanf("%[^\n]", p->telefone);
+    getchar();
+    printf("Data de nascimento (DD/MM/AAAA): ");
+    scanf("%[^\n]", p->data_nascimento);
+    getchar();
+    printf("\n");
+}
+
 void menu_cliente(Cliente *lista) {
     int opcao;
 
@@ -137,7 +172,9 @@ void menu_cliente(Cliente *lista) {
             break;
         case 3:
             buscar_cliente(lista);
+            break;
         case 4:
+            editar_cliente(lista);
             break;
         case 5:
             remover_cliente(lista);
