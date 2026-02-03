@@ -65,3 +65,40 @@ Cliente *buscarCliente(int cpf, Cliente *lista) {
 
     return p;
 }
+
+void menu_cliente(Cliente *cliente) {
+    int opcao;
+
+    do {
+        printf("--- Gerenciamento de Clientes ---\n");
+        printf("1 - Cadastrar cliente\n");
+        printf("2 - Listar todos os clientes \n");
+        printf("3 - Buscar cliente\n");
+        printf("4 - Editar dados de um cliente\n");
+        printf("5 - Remover cliente \n");
+        printf("0 - Sair");
+        printf("-----------------------------------------\n");
+        printf("Digite a opcao desejada: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        }
+    } while (opcao != 0);
+}
+
+int main() {
+
+    Cliente lista = *criar_cliente();
+    menu_cliente(&lista);
+    return 0;
+}
