@@ -24,7 +24,7 @@ void inserir_na_lista(Cliente *lista, Cliente *cliente) {
     lista->prox = cliente;
 }
 
-void listarClientes(Cliente *lista) {
+void listar_clientes(Cliente *lista) {
 
     if (lista->prox == NULL) {
         printf("Lista vazia!\n");
@@ -88,6 +88,30 @@ void cadastrar_cliente(Cliente *lista) {
     printf(">> Sucesso! Cliente cadastrado. <<\n");
 }
 
+void remover_cliente(Cliente *lista) {
+
+    int cpf;
+    printf(">>> Remover cliente <<<\n");
+
+    printf("CPF: ");
+    scanf("%d", &cpf);
+
+    Cliente *p, *q;
+    p = lista;
+    q = lista->prox;
+
+    while (q != NULL && q->cpf != cpf) {
+        p = q;
+        q = q->prox;
+    }
+
+    if (q != NULL) {
+        p->prox = q->prox;
+        free(q);
+        printf("Cliente removido com sucesso!");
+    }
+}
+
 void menu_cliente(Cliente *lista) {
     int opcao;
 
@@ -109,13 +133,14 @@ void menu_cliente(Cliente *lista) {
             cadastrar_cliente(lista);
             break;
         case 2:
-            listarClientes(lista);
+            listar_clientes(lista);
             break;
         case 3:
             buscar_cliente(lista);
         case 4:
             break;
         case 5:
+            remover_cliente(lista);
             break;
         }
     } while (opcao != 0);
