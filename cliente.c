@@ -1,12 +1,44 @@
 #include "cliente.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-Cliente *criarLista() {
+Cliente *criar_cliente() {
+    Cliente *cliente = malloc(sizeof(Cliente));
+
+    if (cliente == NULL) {
+        printf("Erro: Memória insuficiente!\n");
+        exit(1);
+    }
+
+    cliente->cpf = 0;
+    cliente->nome = malloc(100 * sizeof(char));
+    cliente->email = malloc(100 * sizeof(char));
+    cliente->telefone = malloc(20 * sizeof(char));
+    cliente->data_nascimento = malloc(11 * sizeof(char));
+
+    return cliente;
+}
+
+Cliente *criar_lista() {
     Cliente *head = malloc(sizeof(Cliente));
     head->prox = NULL;
 
     return head;
+}
+
+void inserir_na_lista(int cpf, char *nome, char *email, char *telefone,
+                      char *data_nascimento, Cliente *cliente) {
+    Cliente *novo_cliente = criar_cliente();
+
+    novo_cliente->cpf = cpf;
+    strcpy(novo_cliente->nome, nome);
+    strcpy(novo_cliente->email, email);
+    strcpy(novo_cliente->telefone, telefone);
+    strcpy(novo_cliente->data_nascimento, data_nascimento);
+
+    novo_cliente->prox = cliente->prox;
+    cliente->prox = novo_cliente;
 }
 
 void listarClientes(Cliente *lista) {
