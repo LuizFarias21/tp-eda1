@@ -11,7 +11,7 @@ typedef struct cliente {
 } Cliente;
 
 Cliente *criarLista();
-Cliente buscarCliente(int cpf, Cliente *lista);
+Cliente *buscarCliente(int cpf, Cliente *lista);
 void listarClientes(Cliente *lista);
 
 #endif
