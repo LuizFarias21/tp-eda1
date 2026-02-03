@@ -23,3 +23,13 @@ void listarClientes(Cliente *lista) {
         p = p->prox;
     }
 }
+
+Cliente *buscarCliente(int cpf, Cliente *lista) {
+    Cliente *p = lista->prox;
+
+    while (p != NULL && p->cpf != cpf) {
+        p = p->prox;
+    }
+
+    return p;
+}
