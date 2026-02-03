@@ -2,7 +2,7 @@
 #define CLIENTE_H
 
 typedef struct cliente {
-    int cpf[15];
+    int cpf;
     char nome[100];
     char email[100];
     char telefone[20];
