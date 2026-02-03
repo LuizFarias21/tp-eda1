@@ -1,20 +1,20 @@
 /*.c implementa produto.h*/
+#include "produto.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "produto.h"
 
 /* CRUD */
 /*head cell*/
-Produto* criarLista() {
-    Produto *head = (Produto*) malloc(sizeof(Produto));
+Produto *criarLista() {
+    Produto *head = (Produto *)malloc(sizeof(Produto));
     head->prox = NULL;
     return head;
 }
 
 /*cadastro*/
 void cadastrarProduto(Produto *head) {
-    Produto *novo = (Produto*) malloc(sizeof(Produto));
+    Produto *novo = (Produto *)malloc(sizeof(Produto));
 
     printf("Codigo: ");
     scanf("%d", &novo->codigo);
@@ -37,12 +37,12 @@ void cadastrarProduto(Produto *head) {
 void listarProdutos(Produto *head) {
     Produto *aux = head->prox;
 
-    if(aux == NULL) {
+    if (aux == NULL) {
         printf("Nenhum produto cadastrado!\n");
         return;
     }
 
-    while(aux != NULL) {
+    while (aux != NULL) {
         printf("\nCodigo: %d", aux->codigo);
         printf("\nNome: %s", aux->nome);
         printf("\nPreco: %.2f", aux->preco);
@@ -54,18 +54,17 @@ void listarProdutos(Produto *head) {
 
 /* buscar produto */
 
-Produto* buscarProduto(Produto *head, int codigo) {
+Produto *buscarProduto(Produto *head, int codigo) {
     Produto *aux = head->prox;
 
-    while(aux != NULL) {
-        if(aux->codigo == codigo)
+    while (aux != NULL) {
+        if (aux->codigo == codigo)
             return aux;
         aux = aux->prox;
     }
 
     return NULL;
 }
-
 
 /* editar produto */
 
@@ -76,7 +75,7 @@ void editarProduto(Produto *head) {
 
     Produto *p = buscarProduto(head, codigo);
 
-    if(p == NULL) {
+    if (p == NULL) {
         printf("Produto nao encontrado!\n");
         return;
     }
@@ -99,12 +98,12 @@ void removerProduto(Produto *head, int codigo) {
     Produto *ant = head;
     Produto *atual = head->prox;
 
-    while(atual != NULL && atual->codigo != codigo) {
+    while (atual != NULL && atual->codigo != codigo) {
         ant = atual;
         atual = atual->prox;
     }
 
-    if(atual == NULL) {
+    if (atual == NULL) {
         printf("Produto nao encontrado!\n");
         return;
     }
@@ -131,38 +130,37 @@ void menuProdutos(Produto *head) {
         printf("Opcao: ");
         scanf("%d", &op);
 
-        switch(op) {
+        switch (op) {
 
-            case 1:
-                cadastrarProduto(head);
-                break;
+        case 1:
+            cadastrarProduto(head);
+            break;
 
-            case 2:
-                listarProdutos(head);
-                break;
+        case 2:
+            listarProdutos(head);
+            break;
 
-            case 3:
-                printf("Codigo: ");
-                scanf("%d", &codigo);
-                Produto *p = buscarProduto(head, codigo);
-                if(p)
-                    printf("\n%s - R$ %.2f - Qtd: %d\n", p->nome, p->preco, p->quantidade);
-                else
-                    printf("Produto nao encontrado!\n");
-                break;
+        case 3:
+            printf("Codigo: ");
+            scanf("%d", &codigo);
+            Produto *p = buscarProduto(head, codigo);
+            if (p)
+                printf("\n%s - R$ %.2f - Qtd: %d\n", p->nome, p->preco,
+                       p->quantidade);
+            else
+                printf("Produto nao encontrado!\n");
+            break;
 
-            case 4:
-                editarProduto(head);
-                break;
+        case 4:
+            editarProduto(head);
+            break;
 
-            case 5:
-                printf("Codigo: ");
-                scanf("%d", &codigo);
-                removerProduto(head, codigo);
-                break;
+        case 5:
+            printf("Codigo: ");
+            scanf("%d", &codigo);
+            removerProduto(head, codigo);
+            break;
         }
 
-    } while(op != 0);
+    } while (op != 0);
 }
-
-

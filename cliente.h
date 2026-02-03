@@ -10,4 +10,8 @@ typedef struct cliente {
     struct celula_cliente *prox;
 } Cliente;
 
+Cliente *criarLista();
+Cliente buscarCliente(int cpf, Cliente *lista);
+void listarCliente(Cliente *lista);
+
 #endif
