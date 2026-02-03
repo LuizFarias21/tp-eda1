@@ -11,39 +11,22 @@ Cliente *criar_cliente() {
         exit(1);
     }
 
-    cliente->cpf = 0;
-    cliente->nome = malloc(100 * sizeof(char));
-    cliente->email = malloc(100 * sizeof(char));
-    cliente->telefone = malloc(20 * sizeof(char));
-    cliente->data_nascimento = malloc(11 * sizeof(char));
-
+    cliente->prox = NULL;
     return cliente;
 }
 
-Cliente *criar_lista() {
-    Cliente *head = malloc(sizeof(Cliente));
-    head->prox = NULL;
+// Função que só chama outra, é redundante mas pode ser útil
+// se for colocar algo específico na dummy cell.
+Cliente *criar_lista() { return criar_cliente(); }
 
-    return head;
-}
-
-void inserir_na_lista(int cpf, char *nome, char *email, char *telefone,
-                      char *data_nascimento, Cliente *cliente) {
-    Cliente *novo_cliente = criar_cliente();
-
-    novo_cliente->cpf = cpf;
-    strcpy(novo_cliente->nome, nome);
-    strcpy(novo_cliente->email, email);
-    strcpy(novo_cliente->telefone, telefone);
-    strcpy(novo_cliente->data_nascimento, data_nascimento);
-
-    novo_cliente->prox = cliente->prox;
-    cliente->prox = novo_cliente;
+void inserir_na_lista(Cliente *lista, Cliente *cliente) {
+    cliente->prox = lista->prox;
+    lista->prox = cliente;
 }
 
 void listarClientes(Cliente *lista) {
 
-    if (lista == NULL) {
+    if (lista->prox == NULL) {
         printf("Lista vazia!\n");
         return;
     }
@@ -51,9 +34,10 @@ void listarClientes(Cliente *lista) {
     Cliente *p = lista->prox;
 
     while (p != NULL) {
-        printf("%s\n", p->nome);
+        printf("CPF: %d | Nome: %s\n", p->cpf, p->nome);
         p = p->prox;
     }
+    printf("--------------------\n");
 }
 
 Cliente *buscarCliente(int cpf, Cliente *lista) {
@@ -66,7 +50,33 @@ Cliente *buscarCliente(int cpf, Cliente *lista) {
     return p;
 }
 
-void menu_cliente(Cliente *cliente) {
+void cadastrar_cliente(Cliente *lista) {
+
+    Cliente *novo_cliente = criar_cliente();
+
+    printf(">>> Cadastrar cliente <<<\n");
+    printf("CPF: ");
+    scanf("%d", &novo_cliente->cpf);
+    getchar();
+    printf("Nome: ");
+    scanf("%[^\n]", novo_cliente->nome);
+    getchar();
+    printf("Email: ");
+    scanf("%[^\n]", novo_cliente->email);
+    getchar();
+    printf("Telefone: ");
+    scanf("%[^\n]", novo_cliente->telefone);
+    getchar();
+    printf("Data de nascimento (DD/MM/AAAA): ");
+    scanf("%[^\n]", novo_cliente->data_nascimento);
+    getchar();
+    printf("\n");
+
+    inserir_na_lista(lista, novo_cliente);
+    printf(">> Sucesso! Cliente cadastrado. <<\n");
+}
+
+void menu_cliente(Cliente *lista) {
     int opcao;
 
     do {
@@ -80,11 +90,14 @@ void menu_cliente(Cliente *cliente) {
         printf("-----------------------------------------\n");
         printf("Digite a opcao desejada: ");
         scanf("%d", &opcao);
+        getchar();
 
         switch (opcao) {
         case 1:
+            cadastrar_cliente(lista);
             break;
         case 2:
+            listarClientes(lista);
             break;
         case 3:
             break;
@@ -98,7 +111,7 @@ void menu_cliente(Cliente *cliente) {
 
 int main() {
 
-    Cliente lista = *criar_cliente();
-    menu_cliente(&lista);
+    Cliente *lista = criar_lista();
+    menu_cliente(lista);
     return 0;
 }
