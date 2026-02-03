@@ -7,11 +7,11 @@ typedef struct cliente {
     char email[100];
     char telefone[20];
     char data_nascimento[11];
-    struct celula_cliente *prox;
+    struct cliente *prox;
 } Cliente;
 
 Cliente *criarLista();
 Cliente buscarCliente(int cpf, Cliente *lista);
-void listarCliente(Cliente *lista);
+void listarClientes(Cliente *lista);
 
 #endif
