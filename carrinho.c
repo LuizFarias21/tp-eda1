@@ -76,17 +76,25 @@ void listar_carrinho(Carrinho *lista) {
 }
 
 // baixar estoque
+// TODO: refatorar depois
 void finalizar_compra(Carrinho *lista, Produto *head) {
 
+    int comprou = 0;
     Produto *produto = head->prox;
 
     if (produto == NULL) {
+        printf("Impossível finalizar, não há produto.\n");
         return;
     }
 
     while (produto != NULL) {
 
         Carrinho *carrinho = lista->prox;
+        if (carrinho == NULL) {
+
+            printf("Impossível finalizar, não há nada no carrinho.\n");
+            return;
+        }
         while (carrinho != NULL) {
 
             if (produto->codigo == carrinho->codigo_produto) {
@@ -96,14 +104,16 @@ void finalizar_compra(Carrinho *lista, Produto *head) {
 
             carrinho = carrinho->prox;
         }
-        free(carrinho);
 
+        comprou = 1;
         produto = produto->prox;
     }
 
+    if (comprou) {
+        printf("Compra realizada com sucesso!\n");
+    }
     free(lista);
     lista = criar_lista_carrinho();
-    printf("Compra realizada com sucesso!\n");
 }
 
 void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
