@@ -25,8 +25,11 @@ void inserir_na_lista_carrinho(Carrinho *lista, Carrinho *carrinho) {
     lista->prox = carrinho;
 }
 
-// rascunho VVVVVVVV
-// produto->quantidade = produto->quantidade - quantidade;
+void remover_carrinho(Carrinho *carrinho) {
+    Carrinho *lixo = carrinho->prox;
+    carrinho->prox = lixo->prox;
+    free(lixo);
+}
 
 // TODO: refatorar depois
 void adicionar_produto(Carrinho *lista, Produto *head) {
@@ -56,6 +59,42 @@ void adicionar_produto(Carrinho *lista, Produto *head) {
     }
     carrinho->quantidade_compra = quantidade;
     inserir_na_lista_carrinho(lista, carrinho);
+}
+
+// TODO: Refatorar depois
+void retirar_produto_carrinho(Carrinho *lista, Produto *head) {
+
+    Produto *produto = buscarProduto(head);
+    int quantidade;
+    printf("Quantidade a remover: ");
+    scanf("%d", &quantidade);
+
+    Carrinho *carrinho_anterior = lista;
+    Carrinho *carrinho_atual = lista->prox;
+
+    while (carrinho_atual != NULL) {
+
+        if (carrinho_atual->codigo_produto == produto->codigo) {
+            if (quantidade <= carrinho_atual->quantidade_compra) {
+                carrinho_atual->quantidade_compra =
+                    carrinho_atual->quantidade_compra - quantidade;
+
+                if (carrinho_atual->quantidade_compra <= 0) {
+                    remover_carrinho(carrinho_anterior);
+                }
+                return;
+            }
+            printf("Por favor, escolha uma quantidade menor que %d.\n",
+                   carrinho_atual->quantidade_compra);
+            return;
+        } else {
+            printf("Erro: Voce tentou remover mais do que possui (%d).\n",
+                   carrinho_atual->quantidade_compra);
+            return;
+        }
+        carrinho_anterior = carrinho_atual;
+        carrinho_atual = carrinho_atual->prox;
+    }
 }
 
 void listar_carrinho(Carrinho *lista) {
@@ -130,7 +169,7 @@ void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
         printf("--- Gerenciamento do Carrinho ---\n");
         printf("1 - Adicionar produto\n");
         printf("2 - Listar carrinho\n");
-        printf("3 - Remover produto\n");
+        printf("3 - Retirar produto\n");
         printf("4 - Finalizar compra\n");
         printf("0 - Cancelar e voltar\n");
         printf("-----------------------------------------\n");
@@ -146,6 +185,7 @@ void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
             listar_carrinho(lista_carrinho);
             break;
         case 3:
+            retirar_produto_carrinho(lista_carrinho, lista_produtos);
             break;
         case 4:
             finalizar_compra(lista_carrinho, lista_produtos);
