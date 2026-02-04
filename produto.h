@@ -12,7 +12,7 @@ typedef struct Produto {
 
 /* Lista */
 
-Produto* criarLista();
+Produto *criarLista();
 
 /* CRUD */
 
@@ -20,7 +20,7 @@ void cadastrarProduto(Produto *head);
 
 void listarProdutos(Produto *head);
 
-Produto* buscarProduto(Produto *head, int codigo);
+Produto *buscarProduto(Produto *head);
 
 void editarProduto(Produto *head);
 

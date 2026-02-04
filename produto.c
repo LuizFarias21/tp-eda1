@@ -54,7 +54,14 @@ void listarProdutos(Produto *head) {
 
 /* buscar produto */
 
-Produto *buscarProduto(Produto *head, int codigo) {
+Produto *buscarProduto(Produto *head) {
+    printf(">>> Buscar produto <<<\n");
+    int codigo;
+
+    printf("Codigo: ");
+    scanf("%d", &codigo);
+    getchar();
+
     Produto *aux = head->prox;
 
     while (aux != NULL) {
@@ -63,17 +70,14 @@ Produto *buscarProduto(Produto *head, int codigo) {
         aux = aux->prox;
     }
 
+    printf("Produto não encontrado!\n");
     return NULL;
 }
 
 /* editar produto */
 
 void editarProduto(Produto *head) {
-    int codigo;
-    printf("Codigo do produto: ");
-    scanf("%d", &codigo);
-
-    Produto *p = buscarProduto(head, codigo);
+    Produto *p = buscarProduto(head);
 
     if (p == NULL) {
         printf("Produto nao encontrado!\n");
@@ -140,16 +144,14 @@ void menuProdutos(Produto *head) {
             listarProdutos(head);
             break;
 
-        case 3:
-            printf("Codigo: ");
-            scanf("%d", &codigo);
-            Produto *p = buscarProduto(head, codigo);
-            if (p)
+        case 3: {
+            Produto *p = buscarProduto(head);
+            if (p) {
                 printf("\n%s - R$ %.2f - Qtd: %d\n", p->nome, p->preco,
                        p->quantidade);
-            else
-                printf("Produto nao encontrado!\n");
+            }
             break;
+        }
 
         case 4:
             editarProduto(head);
