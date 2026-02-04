@@ -7,7 +7,6 @@ int main() {
 
     Cliente *lista_cliente = criar_lista();
     Produto *lista_produto = criarLista();
-    Carrinho *lista_carrinho = criar_lista_carrinho();
 
     int opcao;
 
