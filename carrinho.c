@@ -75,6 +75,37 @@ void listar_carrinho(Carrinho *lista) {
     }
 }
 
+// baixar estoque
+void finalizar_compra(Carrinho *lista, Produto *head) {
+
+    Produto *produto = head->prox;
+
+    if (produto == NULL) {
+        return;
+    }
+
+    while (produto != NULL) {
+
+        Carrinho *carrinho = lista->prox;
+        while (carrinho != NULL) {
+
+            if (produto->codigo == carrinho->codigo_produto) {
+                produto->quantidade =
+                    produto->quantidade - carrinho->quantidade_compra;
+            }
+
+            carrinho = carrinho->prox;
+        }
+        free(carrinho);
+
+        produto = produto->prox;
+    }
+
+    free(lista);
+    lista = criar_lista_carrinho();
+    printf("Compra realizada com sucesso!\n");
+}
+
 void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
 
     Cliente *cliente_encontrado = buscar_cliente(lista_clientes);
@@ -107,6 +138,7 @@ void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
         case 3:
             break;
         case 4:
+            finalizar_compra(lista_carrinho, lista_produtos);
             break;
         }
     } while (opcao != 0);
