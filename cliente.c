@@ -40,7 +40,7 @@ void listar_clientes(Cliente *lista) {
     printf("--------------------\n");
 }
 
-void buscar_cliente(Cliente *lista) {
+Cliente *buscar_cliente(Cliente *lista) {
 
     int cpf;
     printf(">>> Buscar cliente <<<\n");
@@ -56,10 +56,11 @@ void buscar_cliente(Cliente *lista) {
 
     if (p == NULL) {
         printf("Nenhum cliente encontrado!\n");
-        return;
+        return NULL;
     }
 
-    printf("%s\n", p->nome);
+    printf("Cliente: %s\n", p->nome);
+    return p;
 }
 
 void cadastrar_cliente(Cliente *lista) {
@@ -181,11 +182,4 @@ void menu_cliente(Cliente *lista) {
             break;
         }
     } while (opcao != 0);
-}
-
-int main() {
-
-    Cliente *lista = criar_lista();
-    menu_cliente(lista);
-    return 0;
 }

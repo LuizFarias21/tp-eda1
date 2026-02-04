@@ -10,8 +10,9 @@ typedef struct cliente {
     struct cliente *prox;
 } Cliente;
 
-// Cliente *criarLista();
-// Cliente *buscarCliente(int cpf, Cliente *lista);
-// void listarClientes(Cliente *lista);
+void menu_cliente(Cliente *lista);
+Cliente *criar_cliente();
+Cliente *criar_lista();
+Cliente *buscar_cliente(Cliente *lista);
 
 #endif
