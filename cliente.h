@@ -10,9 +10,14 @@ typedef struct cliente {
     struct cliente *prox;
 } Cliente;
 
-void menu_cliente(Cliente *lista);
-Cliente *criar_cliente();
 Cliente *criar_lista_cliente();
-Cliente *buscar_cliente(Cliente *lista);
+void inserir_cliente(Cliente *head, Cliente *novo);
+int obter_cpf();
+void cadastrar_cliente(Cliente *head);
+void listar_clientes(Cliente *head);
+Cliente *buscar_cliente(Cliente *head, int cpf);
+void editar_cliente(Cliente *head);
+void remover_cliente(Cliente *head);
+void menu_cliente(Cliente *head);
 
 #endif

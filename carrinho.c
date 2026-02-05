@@ -160,7 +160,8 @@ void finalizar_compra(Carrinho *lista, Produto *head) {
 
 void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
 
-    Cliente *cliente_encontrado = buscar_cliente(lista_clientes);
+    int cpf = obter_cpf();
+    Cliente *cliente_encontrado = buscar_cliente(lista_clientes, cpf);
     if (cliente_encontrado == NULL) {
         return;
     }

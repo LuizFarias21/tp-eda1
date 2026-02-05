@@ -55,7 +55,7 @@ void cadastrar_produto(Produto *head) {
 void listar_produtos(Produto *head) {
 
     if (head == NULL) {
-        printf("\n[X] Lista nao inicializada.\n");
+        printf("\n[!] Lista nao inicializada.\n");
         return;
     }
 
@@ -112,21 +112,21 @@ Produto *buscar_produto(Produto *head, int codigo) {
 
 void editar_produto(Produto *head) {
     int codigo = obter_codigo_produto();
-    Produto *p = buscar_produto(head, codigo);
+    Produto *produto = buscar_produto(head, codigo);
 
-    if (p == NULL) {
+    if (produto == NULL) {
         printf("\n[!] Nenhum produto encontrado.\n");
         return;
     }
 
     printf("\n ::: Novo nome: ");
-    scanf(" %99[^\n]", p->nome);
+    scanf(" %99[^\n]", produto->nome);
 
     printf("\n ::: Novo preco: ");
-    scanf("%f", &p->preco);
+    scanf("%f", &produto->preco);
 
     printf("\n ::: Nova quantidade: ");
-    scanf("%d", &p->quantidade);
+    scanf("%d", &produto->quantidade);
 
     printf("\n[*] Informações atualizadas com sucesso.\n");
 }
@@ -214,6 +214,12 @@ void menu_produtos(Produto *head) {
 
         case 5:
             remover_produto(head);
+            pausar();
+            break;
+        case 0:
+            break;
+        default:
+            printf("\n[!] Opcao invalida!\n");
             pausar();
             break;
         }
