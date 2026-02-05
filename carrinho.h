@@ -13,5 +13,10 @@ typedef struct carrinho {
 void menu_compra(Cliente *lista_clientes, Produto *lista_produtos);
 
 Carrinho *criar_lista_carrinho();
-
+void adicionar_produto(Carrinho *head_carrinho, Produto *head_produto);
+void retirar_produto_carrinho(Carrinho *head_carrinho, Produto *head_produto);
+void listar_carrinho(Carrinho *head_carrinho, Produto *head_produto);
+void finalizar_compra(Carrinho *head_carrinho, Produto *head_produto);
+void menu_compra(Cliente *lista_clientes, Produto *lista_produtos);
+void liberar_carrinho(Carrinho *head);
 #endif

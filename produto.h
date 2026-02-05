@@ -18,5 +18,6 @@ void editar_produto(Produto *head);
 void remover_produto(Produto *head);
 int obter_codigo_produto();
 void menu_produtos(Produto *head);
+void liberar_lista_produto(Produto *head);
 
 #endif

@@ -167,6 +167,17 @@ void remover_cliente(Cliente *head) {
     printf("\n[*] Cliente removido com sucesso.\n");
 }
 
+void liberar_lista_cliente(Cliente *head) {
+    Cliente *atual = head;
+    Cliente *prox;
+
+    while (atual != NULL) {
+        prox = atual->prox;
+        free(atual);
+        atual = prox;
+    }
+}
+
 void menu_cliente(Cliente *head) {
     int opcao;
 

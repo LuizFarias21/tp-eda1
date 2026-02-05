@@ -19,5 +19,6 @@ Cliente *buscar_cliente(Cliente *head, int cpf);
 void editar_cliente(Cliente *head);
 void remover_cliente(Cliente *head);
 void menu_cliente(Cliente *head);
+void liberar_lista_cliente(Cliente *head);
 
 #endif

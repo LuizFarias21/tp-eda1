@@ -153,6 +153,17 @@ void remover_produto(Produto *head) {
     printf("\n[*] Produto removido com sucesso.\n");
 }
 
+void liberar_lista_produto(Produto *head) {
+    Produto *atual = head;
+    Produto *prox;
+
+    while (atual != NULL) {
+        prox = atual->prox;
+        free(atual);
+        atual = prox;
+    }
+}
+
 void menu_produtos(Produto *head) {
     int opcao;
 
