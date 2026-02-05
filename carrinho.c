@@ -123,7 +123,7 @@ void adicionar_produto(Carrinho *head_carrinho, Produto *head_produto) {
     printf("\n[*] Produto adicionado ao carrinho.\n");
 }
 
-void retirar_produto_carrinho(Carrinho *head_carrinho, Produto *head_produto) {
+void retirar_produto_carrinho(Carrinho *head_carrinho) {
 
     if (head_carrinho->prox == NULL) {
         printf("\n[!] O carrinho esta vazio.\n");
@@ -291,7 +291,7 @@ void menu_compra(Cliente *lista_clientes, Produto *lista_produtos) {
 
         case 3:
             listar_carrinho(meu_carrinho, lista_produtos);
-            retirar_produto_carrinho(meu_carrinho, lista_produtos);
+            retirar_produto_carrinho(meu_carrinho);
             pausar();
             break;
 
