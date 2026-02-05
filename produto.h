@@ -1,4 +1,3 @@
-/* .h= define tudo o que ocorre no programa */
 #ifndef PRODUTO_H
 #define PRODUTO_H
 
@@ -10,24 +9,14 @@ typedef struct Produto {
     struct Produto *prox;
 } Produto;
 
-/* Lista */
-
-Produto *criarLista();
-
-/* CRUD */
-
-void cadastrarProduto(Produto *head);
-
-void listarProdutos(Produto *head);
-
-Produto *buscarProduto(Produto *head);
-
-void editarProduto(Produto *head);
-
-void removerProduto(Produto *head, int codigo);
-
-/* Menu */
-
-void menuProdutos(Produto *head);
+Produto *criar_lista_produto();
+void inserir_produto(Produto *head, Produto *novo);
+void cadastrar_produto(Produto *head);
+void listar_produtos(Produto *head);
+Produto *buscar_produto(Produto *head, int codigo);
+void editar_produto(Produto *head);
+void remover_produto(Produto *head);
+int obter_codigo_produto();
+void menu_produtos(Produto *head);
 
 #endif

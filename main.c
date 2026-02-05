@@ -5,8 +5,8 @@
 
 int main() {
 
-    Cliente *lista_cliente = criar_lista();
-    Produto *lista_produto = criarLista();
+    Cliente *lista_cliente = criar_lista_cliente();
+    Produto *lista_produto = criar_lista_produto();
 
     int opcao;
 
@@ -28,7 +28,7 @@ int main() {
             menu_cliente(lista_cliente);
             break;
         case 2:
-            menuProdutos(lista_produto);
+            menu_produtos(lista_produto);
             break;
         case 3:
             menu_compra(lista_cliente, lista_produto);

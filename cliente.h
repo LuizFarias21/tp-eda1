@@ -12,7 +12,7 @@ typedef struct cliente {
 
 void menu_cliente(Cliente *lista);
 Cliente *criar_cliente();
-Cliente *criar_lista();
+Cliente *criar_lista_cliente();
 Cliente *buscar_cliente(Cliente *lista);
 
 #endif

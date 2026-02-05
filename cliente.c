@@ -17,7 +17,7 @@ Cliente *criar_cliente() {
 
 // Função que só chama outra, é redundante mas pode ser útil
 // se for colocar algo específico na dummy cell.
-Cliente *criar_lista() { return criar_cliente(); }
+Cliente *criar_lista_cliente() { return criar_cliente(); }
 
 void inserir_na_lista(Cliente *lista, Cliente *cliente) {
     cliente->prox = lista->prox;

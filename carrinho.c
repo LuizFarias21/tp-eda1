@@ -33,7 +33,8 @@ void remover_carrinho(Carrinho *carrinho) {
 
 // TODO: refatorar depois
 void adicionar_produto(Carrinho *lista, Produto *head) {
-    Produto *produto = buscarProduto(head);
+    int codigo = obter_codigo_produto();
+    Produto *produto = buscar_produto(head, codigo);
     int quantidade;
     printf("Quantidade: ");
     scanf("%d", &quantidade);
@@ -64,7 +65,9 @@ void adicionar_produto(Carrinho *lista, Produto *head) {
 // TODO: Refatorar depois
 void retirar_produto_carrinho(Carrinho *lista, Produto *head) {
 
-    Produto *produto = buscarProduto(head);
+    int codigo = obter_codigo_produto();
+    Produto *produto = buscar_produto(head, codigo);
+
     int quantidade;
     printf("Quantidade a remover: ");
     scanf("%d", &quantidade);
